@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student OS • MAKAUT</title>
+    
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons (Arc/Linear style minimal icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="os-container">
+        <!-- OS Sidebar (Outside the main window view) -->
+        <aside class="os-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="student-profile">
+                    <img src="https://ui-avatars.com/api/?name=Alex+Johnson&background=5e6ad2&color=fff&size=128" alt="Alex Johnson" class="profile-img">
+                    <div class="profile-text">
+                        <h3>Alex Johnson</h3>
+                        <p>B.Tech CSE • MAKAUT</p>
+                    </div>
+                </div>
+                
+                <div class="semester-chips">
+                    <button class="chip">Sem 5</button>
+                    <button class="chip active">Sem 6</button>
+                    <button class="chip">Sem 7</button>
+                </div>
+            </div>
+
+            <nav class="os-nav">
+                <div class="nav-section">
+                    <h4>Campus Life</h4>
+                    <ul>
+                        <li class="nav-item active" data-target="dashboard">
+                            <i class="ph ph-house"></i>
+                            <span>Overview</span>
+                        </li>
+                        <li class="nav-item" data-target="feed">
+                            <i class="ph ph-bell-ringing"></i>
+                            <span>Unified Feed</span>
+                            <span class="badge">4</span>
+                        </li>
+                        <li class="nav-item" data-target="events">
+                            <i class="ph ph-calendar-blank"></i>
+                            <span>Events</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h4>Academics</h4>
+                    <ul>
+                        <li class="nav-item">
+                            <i class="ph ph-books"></i>
+                            <span>Classroom</span>
+                        </li>
+                        <li class="nav-item">
+                            <i class="ph ph-chart-line-up"></i>
+                            <span>Grades & Heatmap</span>
+                        </li>
+                        <a href="https://makaut1.ucanapply.com/smartexam/public/" target="_blank" class="nav-item external">
+                            <i class="ph ph-link"></i>
+                            <span>MAKAUT SmartExam</span>
+                            <i class="ph ph-arrow-up-right external-icon"></i>
+                        </a>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="integrations">
+                    <div class="integration-pill success">
+                        <i class="ph-fill ph-google-logo"></i>
+                        <span>Gmail Synced</span>
+                    </div>
+                    <div class="integration-pill warning">
+                        <i class="ph-fill ph-chalkboard-teacher"></i>
+                        <span>Classroom Syncing...</span>
+                    </div>
+                </div>
+                <div class="footer-actions">
+                    <button class="icon-btn" id="themeToggle"><i class="ph ph-sun"></i></button>
+                    <button class="icon-btn"><i class="ph ph-gear"></i></button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main App Window (Arc-style rounded inner container) -->
+        <main class="app-window">
+            <header class="app-header">
+                <button class="menu-btn d-mobile" id="openSidebar"><i class="ph ph-list"></i></button>
+                <div class="breadcrumb">
+                    <i class="ph ph-map-pin"></i>
+                    <span>Campus Life</span>
+                    <span class="separator">/</span>
+                    <span class="current">Overview</span>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="omni-search">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <input type="text" placeholder="Search notices, files, or peers... (Cmd + K)">
+                        <span class="shortcut">⌘K</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="app-content-scroll">
+                <div class="views-wrapper">
+                    
+                    <!-- Dashboard View -->
+                    <section id="dashboard" class="view active">
+                        <div class="dashboard-hero">
+                            <div class="hero-text">
+                                <h1>Good morning, Alex.</h1>
+                                <p>You have 2 classes today and 1 assignment due this week.</p>
+                            </div>
+                            <div class="date-badge">
+                                <span class="day">Thu</span>
+                                <span class="num">07</span>
+                                <span class="month">May</span>
+                            </div>
+                        </div>
+
+                        <div class="bento-layout">
+                            
+                            <!-- Upcoming Class (Left Column Top) -->
+                            <div class="bento-box live-class-box">
+                                <div class="box-header">
+                                    <h3><i class="ph-fill ph-clock-countdown"></i> Up Next</h3>
+                                    <span class="pulse-indicator">Starts in 15m</span>
+                                </div>
+                                <div class="class-details">
+                                    <h2>Compiler Design (CS303)</h2>
+                                    <div class="class-meta">
+                                        <div class="meta-item"><i class="ph ph-door"></i> Room 402, Block B</div>
+                                        <div class="meta-item"><i class="ph ph-user"></i> Dr. S. Mukherjee</div>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-fill" style="width: 10%;"></div>
+                                    </div>
+                                    <div class="time-range">10:30 AM - 11:30 AM</div>
+                                </div>
+                            </div>
+
+                            <!-- Assignment Tracker (Middle Column) -->
+                            <div class="bento-box tasks-box">
+                                <div class="box-header">
+                                    <h3><i class="ph ph-check-square-offset"></i> Assignments</h3>
+                                    <button class="btn-icon-small"><i class="ph ph-plus"></i></button>
+                                </div>
+                                <div class="task-list">
+                                    <label class="task-item urgent">
+                                        <input type="checkbox">
+                                        <span class="custom-checkbox"></span>
+                                        <div class="task-info">
+                                            <span class="title">CS302 Project Report</span>
+                                            <span class="due">Due Today, 11:59 PM</span>
+                                        </div>
+                                    </label>
+                                    <label class="task-item">
+                                        <input type="checkbox">
+                                        <span class="custom-checkbox"></span>
+                                        <div class="task-info">
+                                            <span class="title">ML Lab Assignment 4</span>
+                                            <span class="due">Due Friday</span>
+                                        </div>
+                                    </label>
+                                    <label class="task-item completed">
+                                        <input type="checkbox" checked>
+                                        <span class="custom-checkbox"></span>
+                                        <div class="task-info">
+                                            <span class="title">DBMS Query Practice</span>
+                                            <span class="due">Done</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Unified Feed (Right Column span 2) -->
+                            <div class="bento-box feed-box grid-row-span-2">
+                                <div class="box-header">
+                                    <h3><i class="ph ph-lightning"></i> Unified Feed</h3>
+                                </div>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="tl-icon bg-blue"><i class="ph ph-briefcase"></i></div>
+                                        <div class="tl-content">
+                                            <span class="tl-time">10 mins ago</span>
+                                            <h4>Placement Update</h4>
+                                            <p>TCS Ninja registration link is now active. Deadline: May 15.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="tl-icon bg-red"><i class="ph ph-warning-circle"></i></div>
+                                        <div class="tl-content">
+                                            <span class="tl-time">2 hours ago</span>
+                                            <h4>Admin Notice</h4>
+                                            <p>Library closed tomorrow for maintenance.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="tl-icon bg-green"><i class="ph ph-books"></i></div>
+                                        <div class="tl-content">
+                                            <span class="tl-time">Yesterday</span>
+                                            <h4>Classroom</h4>
+                                            <p>Prof. Davis uploaded material: "Neural Networks Ch. 3".</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="tl-icon bg-purple"><i class="ph ph-calendar-star"></i></div>
+                                        <div class="tl-content">
+                                            <span class="tl-time">May 5</span>
+                                            <h4>Event Reminder</h4>
+                                            <p>TechFest hackathon team formation ends tonight.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Attendance Heatmap (Left & Middle Column Bottom) -->
+                            <div class="bento-box heatmap-box grid-col-span-2">
+                                <div class="box-header">
+                                    <h3><i class="ph ph-squares-four"></i> Attendance Heatmap (This Semester)</h3>
+                                    <span class="overall-stat">82% Overall</span>
+                                </div>
+                                <div class="heatmap-container" id="heatmapContainer">
+                                    <!-- Heatmap cells generated via JS -->
+                                </div>
+                                <div class="heatmap-legend">
+                                    <span>Less</span>
+                                    <div class="legend-scale">
+                                        <div class="cell level-0"></div>
+                                        <div class="cell level-1"></div>
+                                        <div class="cell level-2"></div>
+                                        <div class="cell level-3"></div>
+                                        <div class="cell level-4"></div>
+                                    </div>
+                                    <span>More</span>
+                                </div>
+                            </div>
+
+                            <!-- Campus Events Carousel (Full width bottom) -->
+                            <div class="bento-box events-box grid-col-span-3">
+                                <div class="box-header">
+                                    <h3><i class="ph ph-ticket"></i> Campus Life & Events</h3>
+                                    <div class="carousel-controls">
+                                        <button id="car-prev"><i class="ph ph-caret-left"></i></button>
+                                        <button id="car-next"><i class="ph ph-caret-right"></i></button>
+                                    </div>
+                                </div>
+                                <div class="events-carousel" id="eventsCarousel">
+                                    <div class="event-card">
+                                        <div class="event-img tech"></div>
+                                        <div class="event-info">
+                                            <span class="event-tag">Hackathon</span>
+                                            <h4>CodeX 2026</h4>
+                                            <p><i class="ph ph-calendar"></i> May 15-16</p>
+                                        </div>
+                                    </div>
+                                    <div class="event-card">
+                                        <div class="event-img cultural"></div>
+                                        <div class="event-info">
+                                            <span class="event-tag">Cultural</span>
+                                            <h4 >Spring Fest</h4>
+                                            <p><i class="ph ph-calendar"></i> May 20</p>
+                                        </div>
+                                    </div>
+                                    <div class="event-card">
+                                        <div class="event-img workshop"></div>
+                                        <div class="event-info">
+                                            <span class="event-tag">Workshop</span>
+                                            <h4>AI/ML Bootcamp</h4>
+                                            <p><i class="ph ph-calendar"></i> May 25</p>
+                                        </div>
+                                    </div>
+                                    <div class="event-card">
+                                        <div class="event-img sports"></div>
+                                        <div class="event-info">
+                                            <span class="event-tag">Sports</span>
+                                            <h4>Inter-College Cricket</h4>
+                                            <p><i class="ph ph-calendar"></i> June 2</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </section>
+
+                    <!-- Feed View (Placeholder for other tabs) -->
+                    <section id="feed" class="view">
+                        <div class="dashboard-hero">
+                            <div class="hero-text">
+                                <h1>Unified Feed</h1>
+                                <p>All your notifications across MAKAUT and college platforms in one place.</p>
+                            </div>
+                        </div>
+                        <div class="bento-box">
+                            <p style="color: var(--text-muted); text-align: center; padding: 3rem;">Feed view content would expand here.</p>
+                        </div>
+                    </section>
+                    
+                    <!-- Events View -->
+                    <section id="events" class="view">
+                        <div class="dashboard-hero">
+                            <div class="hero-text">
+                                <h1>Campus Events</h1>
+                                <p>Discover and register for upcoming college activities.</p>
+                            </div>
+                        </div>
+                        <div class="bento-box">
+                            <p style="color: var(--text-muted); text-align: center; padding: 3rem;">Detailed events view would expand here.</p>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
